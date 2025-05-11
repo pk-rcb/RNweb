@@ -1,0 +1,125 @@
+:root {
+  --primary: #6c63ff;
+  --secondary: #4a46b2;
+  --accent: #ff6584;
+  --background: #0f0f1a;
+  --light-bg: #1a1a2e;
+  --text: #ffffff;
+  --text-secondary: #b8b8c7;
+}
+
+.sponsors-container {
+  padding: 3rem 1.5rem;
+background: linear-gradient(115deg, #540e1c, #31165d, #000000);
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: transparent;
+  background: linear-gradient(45deg, var(--primary), var(--accent)); /* Theme gradient */
+  -webkit-background-clip: text;
+  background-clip: text;
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.sponsor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  perspective: 800px;
+}
+
+.sponsor-card-wrapper {
+  position: relative;
+  aspect-ratio: 1;
+  transition: transform 0.3s ease;
+}
+
+.sponsor-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--light-bg); /* Theme light background */
+  border-radius: 12px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--secondary); /* Theme border */
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+  text-decoration: none;
+}
+
+.sponsor-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.01) 100%
+  );
+  pointer-events: none;
+}
+
+.card-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 2;
+}
+
+.sponsor-logo {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  filter: grayscale(100%);
+  transition: all 0.3s ease;
+}
+
+.sponsor-card:hover .sponsor-logo,
+.sponsor-card:focus .sponsor-logo {
+  filter: grayscale(0%);
+  transform: scale(1.1);
+}
+
+.sponsor-card:focus {
+  outline: 2px solid var(--accent); /* Theme accent for focus */
+  outline-offset: 4px;
+}
+
+/* Reset transform when not hovering */
+.sponsor-card {
+  transform: perspective(800px) rotateX(0deg) rotateY(0deg) scale(1);
+  box-shadow: 0 0 15px rgb(0, 0, 0);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .sponsor-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .page-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sponsor-grid {
+    grid-template-columns: 1fr;
+  }
+}
